@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Venta Garage </title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+        <meta name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+        <link rel="stylesheet" href="vg.css">
+    </head>
+    <body style="margin:0;">
+        <main>
+            <nav>
+                <div> <p> Venta <br> Garage </p> </div>
+                <div>
+                    <a href="index.html">De todo</a>
+                    <a href="index.html">Libros</a></span>
+                </div>
+            </nav>
+            <div class='container'><div id="product-container"></div></div>
+            <div class="footer">
+                <a data-sendall="[]" class="btn" target="_blank">Consultar seleccionados</a>
+                <a class="btn" href="https://maps.app.goo.gl/QsNaHJsxXg4SzNqp9" target="_blank">Ubicación</a>
+            </div>
+        </main>
+    </body>
+
+    <script>
+    const products = [
+        {
+            "t":"Papeles en el viento",
+            "d":"Escrito por Eduardo Sacheri.",
+            "p":"10.000",
+            "v":true
+           },
+        {
+            "t":"La pregunta de sus ojos",
+            "p":"7.000",
+            "d":"Escrito por Eduardo Sacheri. En este se basó la película.",
+            "i":"0 -61px",
+            "v":true
+        },
+        {
+            "t":"Crónicas de Narnia",
+            "p":"24.000",
+            "d":"La saga completa por ese valor.",
+            "v":true
+         },
+         {
+             "t":"Saga Eragon",
+            "p":"25.000",
+            "d":"Los 5 por ese precio. El rojo es tapa dura (rl segundo de la saga), pero se perdio el covertor con la ilustarción.",
+            "i":"0 -47px",
+        },
+        {
+            "t":"Los pilares de la tierra",
+            "p":"8.000",
+            "d":"Escrito por Ken Follet.",
+            "i":"0 -73px",
+        },
+        {
+            "t":"Un mundo sin fin",
+            "p":"8.000",
+            "d":"Escrito por Ken Follet.",
+        },
+        {
+            "t":"Harry Potter - 2",
+            "p":"8.000",
+            "d":"Es de tapa dura.",
+            "i":"0 -60px",
+            "v":true
+        },
+        {
+            "t":"Harry Potter - 3",
+            "p":"8.000",
+            "d":"Es de tapa dura.",
+            "v":true
+        },
+        {
+            "t":"Harry Potter - 4",
+            "p":"8.000",
+            "d":"Es de tapa dura.",
+            "i":"0 -50px",
+            "v":true
+        },
+        {
+            "t":"Harry Potter - 5",
+            "p":"12.000",
+            "d":"Es de tapa dura.",
+            "v":true
+        },
+        {
+            "t":"Harry Potter - 6",
+            "p":"12.000",
+            "d":"Es de tapa dura.",
+            "i":"0 -50px",
+            "v":true
+        },
+        {
+            "t":"Juego de tronos I",
+            "p":"10.000",
+            "d":"Es de tapa dura.",
+        },
+        {
+            "t":"Ahsoka",
+            "p":"7.000",
+            "d":"Para fanáticos de Star Wars.",
+            "i":"0 -47px",
+        },
+        {
+            "t":"La sociedad de la nieve",
+            "p":"6.000",
+            "d":"El libro sobre la caída del avión uruguayo en los Andes.",
+            "i":"0 -73px",
+            "v":true
+        },        
+        {
+            "t":"Libros Rorschach",
+            "p":"10.000",
+            "d":"Los 3 juntos por ese precio. Son de la escuela argentina.",
+        },
+        {
+            "t":"Neurociencia",
+            "p":"10.000",
+            "d":"Sin marcar. Así como lo ves salía unos buenos mangos hace 8 años.",
+        },
+        {
+            "t":"Desarrollo psicológico",
+            "p":"6.000",
+            "d":"Sin marcar. Solo tiene el nombre.",
+        },
+        {
+            "t":"Pedagogía de la autonomía",
+            "p":"4.000",
+            "d":"Escrito por Paulo Freire. Sin marcar.",
+        },
+        {
+            "t":"Ciencias biológicas",
+            "p":"2.000",
+            "d":"Escrito en 1972. Una reliquia!",
+        },
+        {
+            "t":"¿Tener o ser?",
+            "p":"4.000",
+            "d":"Escrito por Erich Fromm.",
+        },
+        {
+            "t":"La metamorfosis",
+            "p":"4.000",
+            "d":"De kafka. Tapa dura. Basicamente nuevo.",
+            "v":1,
+            "v":true
+        },
+        {
+            "t":"El niño de 1 a 4 años",
+            "p":"1.000",
+            "d":"Una reliquia.",
+        },
+        {
+            "t":"La interpretación de los sueños I",
+            "p":"1.000",
+            "d":"Del único e inigualable Freudito.",
+        },
+        {
+            "t":"Como podemos hacer para evitar el suicidio",
+            "p":"1.000"
+        },
+        {
+            "t":"El primer año de vida del niño",
+            "p":"4.000",
+            "d": "Del poco polémico Rene Spitz"
+        },
+        {
+            "t":"Aplicaciones de la asertividad",
+            "p":"2.000"
+        },
+        {
+            "t":"Claves para una psicología del desarrollo II",
+            "p":"3.000"
+        },
+        {
+            "t":"Guía de carreras universitarias",
+            "p":"2.000",
+            "d":"Se suele usar para orientación vocacional."
+        },
+        {
+            "t":"Introducción a la psicología",
+            "p":"2.000",
+            "d":"Es un libro ameno de psicologia que se usaba en el ingreso para la UCA."
+        },
+        {
+            "t":"Introducción al saber",
+            "p":"2.000",
+            "d":"Es un libro ameno de filosofía que se usaba en el ingreso para la UCA."
+        },
+        {
+            "t":"Las bases psicológicas de la educación musical",
+            "p":"3.000",
+        },
+        {
+            "t":"La mente musical: La psicología cognitiva de la música",
+            "p":"3.000"
+        },
+        {
+            "t":"El diario de Anna Frank",
+            "p":"5.000"
+        },
+        {
+            "t":"El sufrimiento de los seres comunes",
+            "p":"4.000"
+        },
+        {
+            "t":"El mar de los trolls",
+            "p":"4.000"
+        },
+        {
+            "t":"Jumper",
+            "p":"5.000",
+            "d":"Nada que ver a la película y mucho mejor."
+        },
+        {
+            "t":"La sombra",
+            "p":"6.000",
+            "d":"Escrito por Juancito Katzenbach."
+        },
+        {
+            "t":"El estudiante",
+            "p":"6.000",
+            "d":"Escrito por Juancito Katzenbach."
+        },
+        {
+            "t":"El informe de Brodeck",
+            "p":"8.000",
+            "d":"Escrito por Philippe Claudel"
+        },
+        {
+            "t":"Rosinha mi canoa",
+            "p":"1.000"
+        },
+        {
+            "t":"Cuentos rodados",
+            "p":"1.000",
+            "d":"Escrito por Mamerto Menapace"
+        },
+        {
+            "t":"Cartas a Theo",
+            "p":"5.000",
+            "d":"Son cartas de Van Gogh a su hermano a quien amaba. Ves el descenso a la locura, y como no era tampoco muy cuerdo en sus inicios."
+        },
+        {
+            "t":"El gran León de Dios",
+            "p":"3.000"
+        },
+        {
+            "t":"El retorno del principe",
+            "p":"4.000",
+            "d":"El escritor imagina que se topa con el pricipito y este la pasa su sabiduría."
+        }
+    ];
+
+    const container = document.getElementById("product-container");
+    const btnSel = document.querySelector("[data-sendall]");
+    const wapp = "https://wa.me/+541152201682/?text=Hola Javier! Te consulto por que vendés:"
+    const trunc = 26;
+
+    let total = 0
+
+    products.forEach( (p, i) => {
+        const el = document.createElement("div");
+        el.dataset.ven = Boolean(p.v);
+        el.dataset.desc = Boolean(p.d);
+        el.dataset.show = "img";
+        el.dataset.el = i;
+        el.innerHTML =  `
+            <div class="img-wrapper">
+                <img src="imagenes/${p.t.replace(/[?¿:]/g, "")}.jpeg" ${p.i ? "style='object-position:"+p.i+"'" : ""}>
+                <div>
+                    <h3> Descripción </h3>
+                    <p>${p.d}</p>
+                </div>
+            </div>
+            <input type="checkbox" data-selected="${p.t}">
+            <div>
+                <p> ${p.t.length > trunc ? p.t.slice(0, trunc-3) + "..." : p.t} </p>
+                <h2> $${p.p}</h2>
+                <p data-descclick="${i}"><small>Ver descripción</small><small>Ver imagen</small></p>
+                <a class="btn" href="${wapp} ${p.t}." target="_blank"> Whatsapp </a>
+            </div>
+        `;
+        container.appendChild(el);
+        total += Number(p.p.replace(".", ""))
+    });
+    console.log(total)
+
+    document.querySelectorAll("[data-descclick]").forEach(el =>{
+        el.onclick = ()=>{
+            let cont = document.querySelector(`[data-el="${el.dataset.descclick}"]`)
+            if ( cont.dataset.show == "desc") cont.dataset.show="img";
+            else cont.dataset.show = "desc";
+        }
+    });
+
+    document.querySelectorAll("[data-el]").forEach(el =>{
+        el.onclick = (e)=>{
+            let tg = document.querySelector(`[data-descclick="${el.dataset.el}"]`);
+            if( [tg, tg.firstChild, tg.lastChild].includes(e.target) ) return;
+            document.querySelector(`[data-el="${el.dataset.el}"]`).dataset.show="img";
+        }
+    })
+
+    document.querySelectorAll("[data-selected]").forEach(el =>{
+        el.onclick = (e)=>{
+            let res = JSON.parse(btnSel.dataset.sendall);
+
+            if(el.checked) res.push(el.dataset.selected);
+            else res.splice(el.dataset.selected, 1);
+
+            btnSel.dataset.sendall = JSON.stringify(res);
+            btnSel.href = `${wapp} ${res}.`;
+        }
+    })
+    </script>
+
+
+    
+</html>
